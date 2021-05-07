@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { PokeCard, HomePage } from '../pages';
+import { CardPage, HomePage } from '../pages';
 
 export const Router = () => {
   const [pokemon, setPokemon] = useState('');
@@ -18,10 +18,10 @@ export const Router = () => {
     <BrowserRouter>
       <Switch>
         <Route path="/card">
-          <PokeCard pokemon={pokemon} />
+          <CardPage pokemon={pokemon} />
         </Route>
         <Route path="/">
-          <HomePage setPokemon={handleSetPokemon} />
+          <HomePage pokemon={pokemon} setPokemon={handleSetPokemon} />
         </Route>
       </Switch>
     </BrowserRouter>

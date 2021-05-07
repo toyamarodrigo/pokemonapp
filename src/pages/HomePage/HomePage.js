@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
+import { BasicLayout } from '../../components';
 import POKEMON_BACKGROUND from '../../images/pokemon-background.png';
 import POKEMON_LOGO from '../../images/pokemon-logo.png';
 
-export const HomePage = ({ setPokemon }) => {
+export const HomePage = ({ pokemon, setPokemon }) => {
   // const [storePokemon, setStorePokemon] = useState(() => {
   //   JSON.parse(window.localStorage.getItem('pokemon'));
   // });
@@ -16,6 +17,15 @@ export const HomePage = ({ setPokemon }) => {
   const history = useHistory();
 
   const handleSearchClick = () => {
+    if (!pokemon || pokemon === '0') {
+      handleRandomClick();
+    }
+    history.replace('/card');
+  };
+
+  const handleRandomClick = () => {
+    const randomPokemon = Math.floor(Math.random() * 898) + 1;
+    setPokemon(randomPokemon);
     history.replace('/card');
   };
 
@@ -24,41 +34,37 @@ export const HomePage = ({ setPokemon }) => {
   };
 
   return (
-    <Home width="20px">
+    <BasicLayout width="20px">
       <Wrapper>
         <PokemonLogo src={POKEMON_LOGO} alt="pokemon-logo" />
         <input
           type="search"
-          style={{ marginBottom: '20px' }}
+          style={{
+            marginBottom: '20px',
+            borderRadius: '5px',
+            border: 'none',
+            height: '30px',
+            padding: '10px',
+          }}
           onChange={handleInputChange}
         />
         <ButtonsWrapper>
           <button onClick={handleSearchClick}>Search</button>
-          <button>Random</button>
+          <button onClick={handleRandomClick}>Random</button>
         </ButtonsWrapper>
       </Wrapper>
-    </Home>
+    </BasicLayout>
   );
 };
 
-const Home = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 100vh;
-  width: 100vw;
-  background-image: url(${POKEMON_BACKGROUND});
-`;
-
-const Wrapper = styled.div`
+const Wrapper = styled.form`
   display: flex;
   flex-direction: column;
-  width: 50%;
 `;
 
 const PokemonLogo = styled.img`
   width: 350px;
+  margin-bottom: 24px;
 `;
 
 const ButtonsWrapper = styled.div`
