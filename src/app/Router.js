@@ -4,9 +4,14 @@ import { CardPage, HomePage, FavoritePage } from '../pages';
 
 export const Router = () => {
   const [pokemon, setPokemon] = useState('');
-  const [favorites, setFavorites] = useState([{}]);
-
-  console.log('Router, favorites: ', favorites);
+  const [favorites, setFavorites] = useState(() => {
+    try {
+      const item = localStorage.getItem('pokemon');
+      return item ? JSON.parse(item) : '';
+    } catch (error) {
+      console.log(error);
+    }
+  });
 
   function handleSetfavorite(pokemon) {
     setFavorites((favorites) => [...favorites, { ...pokemon }]);

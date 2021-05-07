@@ -1,18 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import { getPokemon } from '../../api/fetch';
 
 export const PokeCard = ({ pokemon, pokemonData, setPokemonData }) => {
-  // const [pokemonData, setPokemonData] = useState();
-
-  console.log('pokemonData', pokemonData);
 
   useEffect(() => {
     (async () => {
       const response = await getPokemon(pokemon);
       return setPokemonData(response);
     })();
-  }, []);
+  }, [pokemon]);
 
   return (
     <>

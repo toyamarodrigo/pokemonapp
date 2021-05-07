@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import { PokeCard, BasicLayout } from '../../components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,7 +7,6 @@ import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
 
 export const CardPage = ({ pokemon, setFavorite }) => {
   const [pokemonData, setPokemonData] = useState();
-
   // const [pokemonData, setPokemonData] = useState(() => {
   //   JSON.parse(window.localStorage.getItem('pokemon'));
   // });
@@ -17,8 +16,8 @@ export const CardPage = ({ pokemon, setFavorite }) => {
   // }, [pokemonData]);
 
   function handleSetLike() {
-    console.log('CLICK HEART');
     setFavorite(pokemonData);
+    localStorage.setItem('pokemon', JSON.stringify([pokemonData]));
   }
 
   return (

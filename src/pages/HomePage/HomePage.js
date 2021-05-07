@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import { BasicLayout } from '../../components';
 import POKEMON_LOGO from '../../images/pokemon-logo.png';
 
 export const HomePage = ({ pokemon, setPokemon }) => {
-
   const history = useHistory();
 
   const handleSearchClick = () => {
