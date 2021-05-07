@@ -2,17 +2,9 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import { BasicLayout } from '../../components';
-import POKEMON_BACKGROUND from '../../images/pokemon-background.png';
 import POKEMON_LOGO from '../../images/pokemon-logo.png';
 
 export const HomePage = ({ pokemon, setPokemon }) => {
-  // const [storePokemon, setStorePokemon] = useState(() => {
-  //   JSON.parse(window.localStorage.getItem('pokemon'));
-  // });
-
-  // useEffect(() => {
-  //   window.localStorage.setItem('pokemon', JSON.stringify(state));
-  // }, [state]);
 
   const history = useHistory();
 

@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { getPokemon } from '../../api/fetch';
 
-export const PokeCard = ({ pokemon }) => {
-  const [pokemonData, setPokemonData] = useState();
+export const PokeCard = ({ pokemon, pokemonData, setPokemonData }) => {
+  // const [pokemonData, setPokemonData] = useState();
 
-  // TODO https://veekun.com/dex/media/types/en/  POKETYPES
+  console.log('pokemonData', pokemonData);
 
   useEffect(() => {
     (async () => {
