@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { getPokemon } from '../../api/fetch';
 
 export const PokeCard = ({ pokemon, pokemonData, setPokemonData }) => {
-
   useEffect(() => {
     (async () => {
       const response = await getPokemon(pokemon);

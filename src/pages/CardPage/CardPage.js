@@ -7,6 +7,8 @@ import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
 
 export const CardPage = ({ pokemon, setFavorite }) => {
   const [pokemonData, setPokemonData] = useState();
+  const [isLike, setIsLike] = useState(false);
+
   // const [pokemonData, setPokemonData] = useState(() => {
   //   JSON.parse(window.localStorage.getItem('pokemon'));
   // });
@@ -17,6 +19,7 @@ export const CardPage = ({ pokemon, setFavorite }) => {
 
   function handleSetLike() {
     setFavorite(pokemonData);
+    setIsLike(true);
     localStorage.setItem('pokemon', JSON.stringify([pokemonData]));
   }
 
@@ -25,25 +28,28 @@ export const CardPage = ({ pokemon, setFavorite }) => {
       <WrapperCard>
         <TopCard>
           <HeartContainer onClick={handleSetLike}>
-            <FontAwesomeIcon
-              icon={faHeartOutlined}
-              style={{
-                position: 'absolute',
-                fontSize: '1.5em',
-                color: 'white',
-                right: '5%',
-                zIndex: '1',
-              }}
-            />
-            {/* <FontAwesomeIcon
-              icon={faHeartSolid}
-              style={{
-                position: 'absolute',
-                fontSize: '1.5em',
-                color: 'white',
-                right: '5%',
-              }}
-            /> */}
+            {isLike ? (
+              <FontAwesomeIcon
+                icon={faHeartSolid}
+                style={{
+                  position: 'absolute',
+                  fontSize: '1.5em',
+                  color: 'white',
+                  right: '5%',
+                }}
+              />
+            ) : (
+              <FontAwesomeIcon
+                icon={faHeartOutlined}
+                style={{
+                  position: 'absolute',
+                  fontSize: '1.5em',
+                  color: 'white',
+                  right: '5%',
+                  zIndex: '1',
+                }}
+              />
+            )}
           </HeartContainer>
         </TopCard>
         <BottomCard>
