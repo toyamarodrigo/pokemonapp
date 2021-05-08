@@ -18,7 +18,7 @@ export const Navbar = () => {
 };
 
 const Nav = styled.nav`
-  position: absolute;
+  position: fixed;
   display: flex;
   top: 0;
   width: 100%;

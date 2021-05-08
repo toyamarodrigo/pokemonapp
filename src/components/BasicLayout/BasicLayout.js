@@ -7,19 +7,28 @@ export const BasicLayout = (props) => {
   return (
     <Layout>
       <Navbar />
-      {props.children}
+      <CardLayout>{props.children}</CardLayout>
     </Layout>
   );
 };
 
 const Layout = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  gap: 30px;
-  flex-wrap: wrap;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   width: 100vw;
   background-image: url(${POKEMON_BACKGROUND});
+  background-size: cover;
+  background-repeat: no-repeat;
+`;
+
+const CardLayout = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin: 120px 0;
+  height: auto;
+  width: 100%;
 `;
