@@ -5,29 +5,26 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartOutlined } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
 
-export const CardPage = ({ pokemon, setFavorite }) => {
+export const CardPage = ({ pokemon, setFavorite, deleteFavorite }) => {
   const [pokemonData, setPokemonData] = useState();
   const [isLike, setIsLike] = useState(false);
 
-  // const [pokemonData, setPokemonData] = useState(() => {
-  //   JSON.parse(window.localStorage.getItem('pokemon'));
-  // });
-
-  // useEffect(() => {
-  //   window.localStorage.setItem('pokemon', JSON.stringify(pokemonData));
-  // }, [pokemonData]);
-
-  function handleSetLike() {
-    setFavorite(pokemonData);
-    setIsLike(true);
-    localStorage.setItem('pokemon', JSON.stringify([pokemonData]));
+  function handleSetLike(pokemonID) {
+    setIsLike(!isLike);
+    if (isLike) {
+      setIsLike(!isLike);
+      deleteFavorite(pokemonID);
+    } else {
+      setFavorite(pokemonData);
+      localStorage.setItem('pokemon', JSON.stringify([pokemonData]));
+    }
   }
 
   return (
     <BasicLayout>
       <WrapperCard>
         <TopCard>
-          <HeartContainer onClick={handleSetLike}>
+          <HeartContainer onClick={() => handleSetLike(pokemonData.id)}>
             {isLike ? (
               <FontAwesomeIcon
                 icon={faHeartSolid}

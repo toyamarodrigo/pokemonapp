@@ -2,24 +2,26 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { BasicLayout, PokeCardItem } from '../../components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart as faHeartOutlined } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
 
-export const FavoritePage = ({ pokemon, setPokemon, favorites }) => {
+export const FavoritePage = ({ favorites, deleteFavorite }) => {
   const [isLike, setIsLike] = useState(true);
+  const [clickedPokemon, setClickedPokemon] = useState(null);
 
-  function handleSetLike(id) {
-    setIsLike(!isLike);
+  function handleSetLike(pokemonID) {
+    setIsLike(false);
+    setClickedPokemon(pokemonID);
+    deleteFavorite(pokemonID);
   }
 
   return (
     <BasicLayout>
       {favorites ? (
-        favorites.map((e, id) => (
-          <WrapperCard key={id}>
+        favorites.map((e, i) => (
+          <WrapperCard key={i}>
             <TopCard>
-              <HeartContainer onClick={handleSetLike}>
-                {isLike ? (
+              <HeartContainer onClick={() => handleSetLike(e.id)}>
+                {!isLike && clickedPokemon === e.id ? null : (
                   <FontAwesomeIcon
                     icon={faHeartSolid}
                     style={{
@@ -27,17 +29,8 @@ export const FavoritePage = ({ pokemon, setPokemon, favorites }) => {
                       fontSize: '1.5em',
                       color: 'white',
                       right: '5%',
-                    }}
-                  />
-                ) : (
-                  <FontAwesomeIcon
-                    icon={faHeartOutlined}
-                    style={{
-                      position: 'absolute',
-                      fontSize: '1.5em',
-                      color: 'white',
-                      right: '5%',
                       zIndex: '1',
+                      cursor: 'pointer',
                     }}
                   />
                 )}

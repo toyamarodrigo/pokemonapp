@@ -17,6 +17,10 @@ export const Router = () => {
     setFavorites((favorites) => [...favorites, { ...pokemon }]);
   }
 
+  function handleDeleteFavorite(pokemonID) {
+    setFavorites(favorites.filter((el) => el.id !== pokemonID));
+  }
+
   function handleSetPokemon(pokemon) {
     setPokemon(pokemon);
   }
@@ -34,14 +38,16 @@ export const Router = () => {
       <Switch>
         <Route path="/favorites">
           <FavoritePage
-            pokemon={pokemon}
-            setPokemon={handleSetPokemon}
             favorites={favorites}
-            setFavorite={handleSetfavorite}
+            deleteFavorite={handleDeleteFavorite}
           />
         </Route>
         <Route path="/card">
-          <CardPage pokemon={pokemon} setFavorite={handleSetfavorite} />
+          <CardPage
+            pokemon={pokemon}
+            setFavorite={handleSetfavorite}
+            deleteFavorite={handleDeleteFavorite}
+          />
         </Route>
         <Route path="/">
           <HomePage pokemon={pokemon} setPokemon={handleSetPokemon} />

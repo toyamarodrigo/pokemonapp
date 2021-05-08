@@ -1,9 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Navbar } from '../Navbar';
 import POKEMON_BACKGROUND from '../../images/pokemon-background.png';
 
 export const BasicLayout = (props) => {
-  return <Layout>{props.children}</Layout>;
+  return (
+    <Layout>
+      <Navbar />
+      {props.children}
+    </Layout>
+  );
 };
 
 const Layout = styled.div`
