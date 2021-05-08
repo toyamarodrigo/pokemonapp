@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { PokeCard, BasicLayout } from '../../components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { getPokemon } from '../../api/fetch';
 import { faHeart as faHeartOutlined } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
 
@@ -20,43 +21,54 @@ export const CardPage = ({ pokemon, setFavorite, deleteFavorite }) => {
     }
   }
 
+  useEffect(() => {
+    (async () => {
+      const response = await getPokemon(pokemon);
+      return setPokemonData(response);
+    })();
+  }, [pokemon]);
+
   return (
     <BasicLayout>
-      <WrapperCard>
-        <TopCard>
-          <HeartContainer onClick={() => handleSetLike(pokemonData.id)}>
-            {isLike ? (
-              <FontAwesomeIcon
-                icon={faHeartSolid}
-                style={{
-                  position: 'absolute',
-                  fontSize: '1.5em',
-                  color: 'white',
-                  right: '5%',
-                }}
-              />
-            ) : (
-              <FontAwesomeIcon
-                icon={faHeartOutlined}
-                style={{
-                  position: 'absolute',
-                  fontSize: '1.5em',
-                  color: 'white',
-                  right: '5%',
-                  zIndex: '1',
-                }}
-              />
-            )}
-          </HeartContainer>
-        </TopCard>
-        <BottomCard>
-          <PokeCard
-            pokemon={pokemon}
-            pokemonData={pokemonData}
-            setPokemonData={setPokemonData}
-          />
-        </BottomCard>
-      </WrapperCard>
+      {pokemonData ? (
+        <WrapperCard>
+          <TopCard>
+            <HeartContainer onClick={() => handleSetLike(pokemonData.id)}>
+              {isLike ? (
+                <FontAwesomeIcon
+                  icon={faHeartSolid}
+                  style={{
+                    position: 'absolute',
+                    fontSize: '1.5em',
+                    color: 'white',
+                    right: '5%',
+                  }}
+                />
+              ) : (
+                <FontAwesomeIcon
+                  icon={faHeartOutlined}
+                  style={{
+                    position: 'absolute',
+                    fontSize: '1.5em',
+                    color: 'white',
+                    right: '5%',
+                    zIndex: '1',
+                  }}
+                />
+              )}
+            </HeartContainer>
+          </TopCard>
+          <BottomCard>
+            <PokeCard
+              pokemon={pokemon}
+              pokemonData={pokemonData}
+              setPokemonData={setPokemonData}
+            />
+          </BottomCard>
+        </WrapperCard>
+      ) : (
+        <h1>Loading...</h1>
+      )}
     </BasicLayout>
   );
 };
