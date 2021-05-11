@@ -28,6 +28,17 @@ export const CardPage = ({ pokemon, setFavorite, deleteFavorite }) => {
     })();
   }, [pokemon]);
 
+  useEffect(() => {
+    (async () => {
+      const token = await JSON.parse(localStorage.getItem('pokemon'));
+      if (pokemonData) {
+        token.some((favoritePokemon) => favoritePokemon.id === pokemonData.id)
+          ? setIsLike(true)
+          : setIsLike(false);
+      }
+    })();
+  }, [pokemonData]);
+
   return (
     <BasicLayout>
       {pokemonData ? (
