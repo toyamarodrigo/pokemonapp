@@ -21,7 +21,7 @@ export const HomePage = ({ pokemon, setPokemon }) => {
   };
 
   const handleInputChange = (e) => {
-    setPokemon(e.target.value);
+    setPokemon(e.target.value.toLowerCase());
   };
 
   return (
