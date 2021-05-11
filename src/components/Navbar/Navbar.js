@@ -12,6 +12,15 @@ export const Navbar = () => {
         <li>
           <Link to="/favorites">Favorites</Link>
         </li>
+        <li>
+          <a
+            href="https://github.com/toyamarodrigo/pokemonapp"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Github
+          </a>
+        </li>
       </ul>
     </Nav>
   );

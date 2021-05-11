@@ -8,11 +8,13 @@ export const BasicLayout = (props) => {
     <Layout>
       <Navbar />
       <CardLayout>{props.children}</CardLayout>
+      <Copyright>  Copyright © {new Date().getFullYear()} - Rodrigo Toyama </Copyright>
     </Layout>
   );
 };
 
 const Layout = styled.div`
+  position: relative;
   display: flex;
   min-height: 100vh;
   height: 100%;
@@ -32,3 +34,13 @@ const CardLayout = styled.div`
   height: auto;
   width: 100%;
 `;
+
+const Copyright = styled.footer`
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  padding: 10px;
+  width: 100%;
+  font-size: 0.8rem;
+`
