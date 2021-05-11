@@ -6,7 +6,7 @@ React Application for educational purposes.
 Tech used:
 
 * HTML
-* React
+* React, React-Router
 * Styled-Components
 
 * API: <https://pokeapi.co/>
