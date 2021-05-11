@@ -9,6 +9,7 @@ import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
 export const CardPage = ({ pokemon, setFavorite, deleteFavorite }) => {
   const [pokemonData, setPokemonData] = useState();
   const [isLike, setIsLike] = useState(false);
+  const [foundPokemon, setFoundPokemon] = useState('Loading...');
 
   function handleSetLike(pokemonID) {
     setIsLike(!isLike);
@@ -24,6 +25,7 @@ export const CardPage = ({ pokemon, setFavorite, deleteFavorite }) => {
   useEffect(() => {
     (async () => {
       const response = await getPokemon(pokemon);
+      if (!response) setFoundPokemon('Pokemon Not Found');
       return setPokemonData(response);
     })();
   }, [pokemon]);
@@ -78,7 +80,7 @@ export const CardPage = ({ pokemon, setFavorite, deleteFavorite }) => {
           </BottomCard>
         </WrapperCard>
       ) : (
-        <h1>Loading...</h1>
+        <h1>{foundPokemon}</h1>
       )}
     </BasicLayout>
   );
