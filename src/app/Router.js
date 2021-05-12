@@ -25,12 +25,8 @@ export const Router = () => {
     setPokemon(pokemon);
   }
 
-  function saveLocalPokemon() {
-    localStorage.setItem('pokemon', JSON.stringify(favorites));
-  }
-
   useEffect(() => {
-    saveLocalPokemon();
+    localStorage.setItem('pokemon', JSON.stringify(favorites));
   }, [favorites]);
 
   return (
