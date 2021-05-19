@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const PokeCard = ({ pokemonData }) => {
   return (
     <>
-      {pokemonData ? (
+      {pokemonData && (
         <PokemonBodyContainer>
           {/* Pokemon Image */}
           <PokemonImage
@@ -71,73 +71,6 @@ export const PokeCard = ({ pokemonData }) => {
             <div>
               <PokemonSquareStat>
                 <h3>{pokemonData.weight / 10}kg</h3>
-              </PokemonSquareStat>
-
-              <PokemonSquareTitle>
-                <h3>Weight</h3>
-              </PokemonSquareTitle>
-            </div>
-          </PokemonStatsContainer>
-        </PokemonBodyContainer>
-      ) : (
-        <PokemonBodyContainer>
-          <PokemonNameContainer>
-            <span>?</span>
-            <h3>?</h3>
-          </PokemonNameContainer>
-
-          {/* Pokemon HP, ATK, DF, SP & Type */}
-          <PokemonInfo>
-            <PokemonStatsContainer>
-              <div
-                style={{
-                  display: 'flex',
-                  gap: '10px',
-                  flexDirection: 'column',
-                  textAlign: 'justify',
-                }}
-              >
-                <h3>{`HP: ???`}</h3>
-                <h3>{`ATK: ???`}</h3>
-                <h3>{`DF: ???`}</h3>
-                <h3>{`SP: ???`}</h3>
-              </div>
-            </PokemonStatsContainer>
-            <PokemonTypesContainer>
-              <span>
-                <img
-                  src={`https://veekun.com/dex/media/types/en/unknown.png`}
-                  alt="badge-pokemon-type"
-                />
-              </span>
-            </PokemonTypesContainer>
-          </PokemonInfo>
-
-          {/* Pokemon Base EXP, Height & Weight */}
-          <PokemonStatsContainer>
-            <div>
-              <PokemonSquareStat>
-                <h3>???</h3>
-              </PokemonSquareStat>
-
-              <PokemonSquareTitle>
-                <h3>Base Exp.</h3>
-              </PokemonSquareTitle>
-            </div>
-
-            <div>
-              <PokemonSquareStat>
-                <h3>???</h3>
-              </PokemonSquareStat>
-
-              <PokemonSquareTitle>
-                <h3>Height</h3>
-              </PokemonSquareTitle>
-            </div>
-
-            <div>
-              <PokemonSquareStat>
-                <h3>???</h3>
               </PokemonSquareStat>
 
               <PokemonSquareTitle>

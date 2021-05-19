@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { BasicLayout, PokeCardItem } from '../../components';
+import { BasicLayout, PokeCard } from '../../components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
 
@@ -37,7 +37,7 @@ export const FavoritePage = ({ favorites, deleteFavorite }) => {
               </HeartContainer>
             </TopCard>
             <BottomCard>
-              <PokeCardItem pokemonData={e} />
+              <PokeCard pokemonData={e} />
             </BottomCard>
           </WrapperCard>
         ))
