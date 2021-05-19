@@ -56,7 +56,7 @@ export const CardPage = ({
     <BasicLayout>
       {pokemonData ? (
         <WrapperCard>
-          <TopCard>
+          <TopCard PokemonColorType={pokemonData.types[0].type.name}>
             <HeartContainer onClick={() => handleSetLike(pokemonData.id)}>
               {isLike ? (
                 <FontAwesomeIcon
@@ -112,7 +112,27 @@ const WrapperCard = styled.div`
 
 const TopCard = styled.div`
   position: absolute;
-  background-color: #cc0000;
+  background-color: ${({ PokemonColorType }) =>
+    (PokemonColorType === 'bug' && '#A8B820') ||
+    (PokemonColorType === 'dark' && '#7C4A16') ||
+    (PokemonColorType === 'dragon' && '#603986') ||
+    (PokemonColorType === 'electric' && '#FFD700') ||
+    (PokemonColorType === 'fairy' && '#F8B2E7') ||
+    (PokemonColorType === 'fighting' && '#8E3931') ||
+    (PokemonColorType === 'fire' && '#F05030') ||
+    (PokemonColorType === 'flying' && '#B280D2') ||
+    (PokemonColorType === 'ghost' && '#43275D') ||
+    (PokemonColorType === 'grass' && '#137C15') ||
+    (PokemonColorType === 'ground' && '#E0C068') ||
+    (PokemonColorType === 'ice' && '#728EF0') ||
+    (PokemonColorType === 'normal' && '#A8A878') ||
+    (PokemonColorType === 'poison' && '#A040A0') ||
+    (PokemonColorType === 'psychic' && '#D05D7A') ||
+    (PokemonColorType === 'rock' && '#745600') ||
+    (PokemonColorType === 'shadow' && '#F45987') ||
+    (PokemonColorType === 'steel' && '#B8B8D0') ||
+    (PokemonColorType === 'water' && '#A9DEf2') ||
+    '#9BE5DC'};
   top: 0;
   width: 100%;
   height: 50%;
