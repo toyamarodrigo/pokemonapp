@@ -22,7 +22,7 @@ export const Router = () => {
   }
 
   function handleSetPokemon(pokemon) {
-    localStorage.setItem('currentPokemonID', JSON.stringify(pokemon));
+    localStorage.setItem('currentPokemon', JSON.stringify(pokemon));
     setPokemon(pokemon);
   }
 

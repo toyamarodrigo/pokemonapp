@@ -29,8 +29,8 @@ export const CardPage = ({
 
   useEffect(() => {
     (async () => {
-      const currentPokemonID = localStorage.getItem('currentPokemonID');
-      const response = await getPokemon(currentPokemonID);
+      const currentPokemon = JSON.parse(localStorage.getItem('currentPokemon'));
+      const response = await getPokemon(currentPokemon);
       if (!response) {
         setFoundPokemon('Pokemon Not Found');
       } else {

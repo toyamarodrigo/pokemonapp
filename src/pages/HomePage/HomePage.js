@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
 import { BasicLayout } from '../../components';
@@ -23,6 +23,11 @@ export const HomePage = ({ pokemon, setPokemon }) => {
   const handleInputChange = (e) => {
     setPokemon(e.target.value.toLowerCase());
   };
+
+  useEffect(() => {
+    // Removemos currentPokemon una vez salido de /card
+    localStorage.removeItem('currentPokemon');
+  }, []);
 
   return (
     <BasicLayout width="20px">
