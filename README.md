@@ -3,6 +3,12 @@
 
 React Application for educational purposes.
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/1d455deb-4369-4142-bebc-f66e9c857338/deploy-status)](https://app.netlify.com/sites/rt-pokemonapp/deploys)
+
+Demo-Netlify: <https://rt-pokemonapp.netlify.app/>
+
+Demo-Vercel: <https://rt-pokemonapp.vercel.app/>
+
 Tech used:
 
 * HTML
