@@ -6,7 +6,12 @@ import { getPokemon } from '../../api/fetch';
 import { faHeart as faHeartOutlined } from '@fortawesome/free-regular-svg-icons';
 import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
 
-export const CardPage = ({ pokemon, setFavorite, deleteFavorite }) => {
+export const CardPage = ({
+  pokemon,
+  favorites,
+  setFavorite,
+  deleteFavorite,
+}) => {
   const [pokemonData, setPokemonData] = useState();
   const [isLike, setIsLike] = useState(false);
   const [foundPokemon, setFoundPokemon] = useState('Loading...');
@@ -24,22 +29,28 @@ export const CardPage = ({ pokemon, setFavorite, deleteFavorite }) => {
 
   useEffect(() => {
     (async () => {
-      const response = await getPokemon(pokemon);
-      if (!response) setFoundPokemon('Pokemon Not Found');
-      return setPokemonData(response);
+      const currentPokemonID = localStorage.getItem('currentPokemonID');
+      const response = await getPokemon(currentPokemonID);
+      if (!response) {
+        setFoundPokemon('Pokemon Not Found');
+      } else {
+        setPokemonData(response);
+      }
     })();
-  }, [pokemon]);
+  }, [pokemon, pokemonData]);
 
   useEffect(() => {
     (async () => {
-      const token = await JSON.parse(localStorage.getItem('pokemon'));
-      if (pokemonData) {
-        token.some((favoritePokemon) => favoritePokemon.id === pokemonData.id)
-          ? setIsLike(true)
-          : setIsLike(false);
+      if (favorites) {
+        const token = await JSON.parse(localStorage.getItem('pokemon'));
+        if (pokemonData) {
+          token.some((favoritePokemon) => favoritePokemon.id === pokemonData.id)
+            ? setIsLike(true)
+            : setIsLike(false);
+        }
       }
     })();
-  }, [pokemonData]);
+  }, [pokemonData, favorites]);
 
   return (
     <BasicLayout>

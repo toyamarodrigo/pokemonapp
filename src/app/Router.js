@@ -22,6 +22,7 @@ export const Router = () => {
   }
 
   function handleSetPokemon(pokemon) {
+    localStorage.setItem('currentPokemonID', JSON.stringify(pokemon));
     setPokemon(pokemon);
   }
 
@@ -30,7 +31,7 @@ export const Router = () => {
   }
 
   useEffect(() => {
-    saveLocalPokemon(favorites)
+    saveLocalPokemon(favorites);
   }, [favorites]);
 
   return (
@@ -45,6 +46,7 @@ export const Router = () => {
         <Route path="/card">
           <CardPage
             pokemon={pokemon}
+            favorites={favorites}
             setFavorite={handleSetfavorite}
             deleteFavorite={handleDeleteFavorite}
           />
