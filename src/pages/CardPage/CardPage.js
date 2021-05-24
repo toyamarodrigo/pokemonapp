@@ -37,7 +37,7 @@ export const CardPage = ({
         setPokemonData(response);
       }
     })();
-  }, [pokemon, pokemonData]);
+  }, [pokemon]);
 
   useEffect(() => {
     (async () => {
